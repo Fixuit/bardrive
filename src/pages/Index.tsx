@@ -6,6 +6,20 @@ import { motion } from "framer-motion";
 const Index = () => {
   return (
     <div className="min-h-screen bg-charcoal">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="w-full py-8 bg-darkChar"
+      >
+        <div className="container mx-auto px-4">
+          <img
+            src="/lovable-uploads/61c1a51b-9449-41b4-a20c-bc96938e97b5.png"
+            alt="BarDrive Logo"
+            className="h-24 md:h-32 mx-auto"
+          />
+        </div>
+      </motion.div>
+      
       <Hero />
       <motion.section
         initial={{ opacity: 0 }}
@@ -46,6 +60,21 @@ const Index = () => {
       </motion.section>
       <Gallery />
       <QuoteForm />
+      
+      <motion.footer
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="py-12 bg-darkChar"
+      >
+        <div className="container mx-auto px-4">
+          <img
+            src="/lovable-uploads/ee5a3944-e285-4857-ace9-29d490135270.png"
+            alt="BarDrive Full Logo"
+            className="max-w-md mx-auto"
+          />
+        </div>
+      </motion.footer>
     </div>
   );
 };
