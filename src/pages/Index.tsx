@@ -1,6 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { Gallery } from "@/components/Gallery";
 import { QuoteForm } from "@/components/QuoteForm";
+import { SocialLinks } from "@/components/SocialLinks";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
             alt="BarDrive Logo"
             className="h-24 md:h-32 mx-auto"
           />
+          <SocialLinks />
         </div>
       </motion.div>
       
