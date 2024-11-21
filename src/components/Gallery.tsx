@@ -40,7 +40,7 @@ export const Gallery = () => {
         >
           <h2 className="text-4xl font-bold mb-4">What we've been up to</h2>
           <a
-            href="https://instagram.com/bardrive"
+            href="https://instagram.com/BarDriveATL"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-neonPink hover:text-neonBlue transition-colors"
