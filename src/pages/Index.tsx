@@ -9,7 +9,7 @@ const Index = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="w-full py-8 bg-darkChar"
+        className="w-full py-8 bg-black"
       >
         <div className="container mx-auto px-4">
           <img
@@ -65,7 +65,7 @@ const Index = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="py-12 bg-darkChar"
+        className="py-12 bg-black"
       >
         <div className="container mx-auto px-4">
           <img
