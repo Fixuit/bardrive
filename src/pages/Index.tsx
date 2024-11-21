@@ -10,13 +10,13 @@ const Index = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="w-full py-8 bg-black"
+        className="w-full py-12 bg-gradient-to-r from-black via-charcoal to-black shadow-2xl"
       >
         <div className="container mx-auto px-4">
           <img
             src="/lovable-uploads/61c1a51b-9449-41b4-a20c-bc96938e97b5.png"
             alt="BarDrive Logo"
-            className="h-24 md:h-32 mx-auto"
+            className="h-32 md:h-40 mx-auto hover:scale-105 transition-transform duration-300"
           />
           <SocialLinks />
         </div>
