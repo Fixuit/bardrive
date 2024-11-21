@@ -3,8 +3,6 @@ import { Gallery } from "@/components/Gallery";
 import { QuoteForm } from "@/components/QuoteForm";
 import { motion } from "framer-motion";
 
-<lov-add-dependency>framer-motion@latest</lov-add-dependency>
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-charcoal">
