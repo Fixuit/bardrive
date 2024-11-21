@@ -1,4 +1,4 @@
-import { Instagram, TikTok } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const SocialLinks = () => {
@@ -14,13 +14,13 @@ export const SocialLinks = () => {
         <Instagram size={24} />
       </motion.a>
       <motion.a
-        href="https://tiktok.com/@bardrive"
+        href="https://youtube.com/@bardrive"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.1 }}
         className="text-cream hover:text-neonBlue transition-colors"
       >
-        <TikTok size={24} />
+        <Youtube size={24} />
       </motion.a>
     </div>
   );
