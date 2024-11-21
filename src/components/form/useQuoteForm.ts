@@ -31,26 +31,22 @@ export const useQuoteForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    const base = new Airtable({
+      apiKey: "pat9h8Fg7liLyUekd.b6b6181e4af0af30b8c26f69722fdfe5e31485acb1bbf94ffbaa33186162aa41"
+    }).base("app0iL7tPqio3InM8");
+    
     try {
-      const base = new Airtable({
-        apiKey: "pat9h8Fg7liLyUekd.b6b6181e4af0af30b8c26f69722fdfe5e31485acb1bbf94ffbaa33186162aa41"
-      }).base("app0iL7tPqio3InM8");
-
-      await base('Quote Requests').create([
-        {
-          fields: {
-            Name: formData.name,
-            Email: formData.email,
-            Phone: formData.phone,
-            "Event Date": formData.date,
-            "Number of Guests": parseInt(formData.guests),
-            "Event Type": formData.eventType,
-            "Duration (hours)": parseInt(formData.duration),
-            "Event Details": formData.details,
-            "Submission Date": new Date().toISOString()
-          }
-        }
-      ]);
+      await base('Quote Requests').create({
+        Name: formData.name,
+        Email: formData.email,
+        Phone: formData.phone,
+        "Event Date": formData.date,
+        "Number of Guests": parseInt(formData.guests),
+        "Event Type": formData.eventType,
+        "Duration (hours)": parseInt(formData.duration),
+        "Event Details": formData.details,
+        "Submission Date": new Date().toISOString()
+      });
 
       toast({
         title: "Quote Request Received",
