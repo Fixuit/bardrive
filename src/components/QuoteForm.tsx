@@ -6,6 +6,21 @@ import { eventTypes } from "./form/EventTypes";
 export const QuoteForm = () => {
   const { formData, setFormData, handleSubmit } = useQuoteForm();
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setFormData({ ...formData, phone: value });
+  };
+
   return (
     <section id="quote-form" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -24,6 +39,8 @@ export const QuoteForm = () => {
                 <input
                   type="text"
                   required
+                  pattern="[A-Za-z\s]+"
+                  title="Please enter only letters and spaces"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -35,6 +52,8 @@ export const QuoteForm = () => {
                 <input
                   type="email"
                   required
+                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                  title="Please enter a valid email address"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -44,14 +63,15 @@ export const QuoteForm = () => {
               </FormField>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField label="Phone Number">
+              <FormField label="Phone Number (10 digits)">
                 <input
                   type="tel"
                   required
+                  pattern="\d{10}"
+                  title="Please enter exactly 10 digits"
                   value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
+                  onChange={handlePhoneChange}
+                  placeholder="1234567890"
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
               </FormField>
