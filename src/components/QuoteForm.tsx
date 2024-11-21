@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
+import Airtable from "airtable";
 
 export const QuoteForm = () => {
   const { toast } = useToast();
@@ -24,22 +25,53 @@ export const QuoteForm = () => {
     "Just Because",
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Quote Request Received",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      date: "",
-      guests: "",
-      eventType: "",
-      duration: "",
-      details: "",
-    });
+    
+    try {
+      const base = new Airtable({
+        apiKey: import.meta.env.VITE_AIRTABLE_API_KEY
+      }).base(import.meta.env.VITE_AIRTABLE_BASE_ID);
+
+      await base('Quote Requests').create([
+        {
+          fields: {
+            Name: formData.name,
+            Email: formData.email,
+            Phone: formData.phone,
+            "Event Date": formData.date,
+            "Number of Guests": parseInt(formData.guests),
+            "Event Type": formData.eventType,
+            "Duration (hours)": parseInt(formData.duration),
+            "Event Details": formData.details,
+            "Submission Date": new Date().toISOString()
+          }
+        }
+      ]);
+
+      toast({
+        title: "Quote Request Received",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        guests: "",
+        eventType: "",
+        duration: "",
+        details: "",
+      });
+    } catch (error) {
+      toast({
+        title: "Error Submitting Form",
+        description: "Please try again or contact us directly.",
+        variant: "destructive"
+      });
+      console.error('Error submitting to Airtable:', error);
+    }
   };
 
   return (
