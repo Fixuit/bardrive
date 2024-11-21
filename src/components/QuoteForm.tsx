@@ -1,78 +1,10 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { useToast } from "@/components/ui/use-toast";
-import Airtable from "airtable";
+import { FormField } from "./form/FormField";
+import { useQuoteForm } from "./form/useQuoteForm";
+import { eventTypes } from "./form/EventTypes";
 
 export const QuoteForm = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    date: "",
-    guests: "",
-    eventType: "",
-    duration: "",
-    details: "",
-  });
-
-  const eventTypes = [
-    "Birthday Party",
-    "Cocktail Party",
-    "Wedding",
-    "Corporate Event",
-    "Theme Party",
-    "Just Because",
-  ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const base = new Airtable({
-        apiKey: import.meta.env.VITE_AIRTABLE_API_KEY
-      }).base(import.meta.env.VITE_AIRTABLE_BASE_ID);
-
-      await base('Quote Requests').create([
-        {
-          fields: {
-            Name: formData.name,
-            Email: formData.email,
-            Phone: formData.phone,
-            "Event Date": formData.date,
-            "Number of Guests": parseInt(formData.guests),
-            "Event Type": formData.eventType,
-            "Duration (hours)": parseInt(formData.duration),
-            "Event Details": formData.details,
-            "Submission Date": new Date().toISOString()
-          }
-        }
-      ]);
-
-      toast({
-        title: "Quote Request Received",
-        description: "We'll get back to you within 24 hours.",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        guests: "",
-        eventType: "",
-        duration: "",
-        details: "",
-      });
-    } catch (error) {
-      toast({
-        title: "Error Submitting Form",
-        description: "Please try again or contact us directly.",
-        variant: "destructive"
-      });
-      console.error('Error submitting to Airtable:', error);
-    }
-  };
+  const { formData, setFormData, handleSubmit } = useQuoteForm();
 
   return (
     <section id="quote-form" className="py-20 bg-muted">
@@ -88,8 +20,7 @@ export const QuoteForm = () => {
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name</label>
+              <FormField label="Name">
                 <input
                   type="text"
                   required
@@ -99,9 +30,8 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Email</label>
+              </FormField>
+              <FormField label="Email">
                 <input
                   type="email"
                   required
@@ -111,11 +41,10 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
+              </FormField>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Phone Number</label>
+              <FormField label="Phone Number">
                 <input
                   type="tel"
                   required
@@ -125,9 +54,8 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Event Date</label>
+              </FormField>
+              <FormField label="Event Date">
                 <input
                   type="date"
                   required
@@ -137,11 +65,10 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
+              </FormField>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Type of Event</label>
+              <FormField label="Type of Event">
                 <select
                   required
                   value={formData.eventType}
@@ -157,9 +84,8 @@ export const QuoteForm = () => {
                     </option>
                   ))}
                 </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Duration (hours)</label>
+              </FormField>
+              <FormField label="Duration (hours)">
                 <input
                   type="number"
                   required
@@ -170,11 +96,10 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
+              </FormField>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Number of Guests</label>
+              <FormField label="Number of Guests">
                 <input
                   type="number"
                   required
@@ -184,12 +109,9 @@ export const QuoteForm = () => {
                   }
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
-              </div>
+              </FormField>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Tell us about your Event
-              </label>
+            <FormField label="Tell us about your Event">
               <textarea
                 required
                 value={formData.details}
@@ -199,7 +121,7 @@ export const QuoteForm = () => {
                 rows={4}
                 className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
               />
-            </div>
+            </FormField>
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
