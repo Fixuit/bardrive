@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,33 +6,33 @@
 
 @layer base {
   :root {
-    --background: 222 15% 19%;
+    --background: 240 20% 3%;
     --foreground: 0 0% 96%;
 
-    --card: 222 15% 19%;
+    --card: 240 20% 3%;
     --card-foreground: 0 0% 96%;
 
-    --popover: 222 15% 19%;
+    --popover: 240 20% 3%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 35 43% 63%;
+    --primary: 326 100% 56%;
     --primary-foreground: 0 0% 96%;
 
-    --secondary: 30 57% 46%;
+    --secondary: 187 100% 50%;
     --secondary-foreground: 0 0% 96%;
 
-    --muted: 217 33% 17%;
+    --muted: 240 20% 12%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 35 43% 63%;
+    --accent: 326 100% 56%;
     --accent-foreground: 0 0% 96%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 96%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 35 43% 63%;
+    --border: 240 20% 12%;
+    --input: 240 20% 12%;
+    --ring: 326 100% 56%;
 
     --radius: 0.5rem;
   }
@@ -43,11 +43,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-charcoal text-cream;
-    font-family: 'Inter', sans-serif;
+    @apply bg-darkChar text-cream;
+    font-family: 'Roboto', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Orbitron', sans-serif;
   }
 }
 
@@ -61,4 +61,13 @@
 
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.neon-gradient {
+  @apply bg-gradient-to-r from-neonPink via-neonPurple to-neonBlue bg-clip-text text-transparent;
+}
+
+.neon-border {
+  @apply border-2 border-transparent bg-gradient-to-r from-neonPink via-neonPurple to-neonBlue;
+  background-clip: padding-box;
 }

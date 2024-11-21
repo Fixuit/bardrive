@@ -51,7 +51,9 @@ export const QuoteForm = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-4xl font-bold mb-8 text-center">Reserve your date and Get a Quote</h2>
+          <h2 className="text-4xl font-bold mb-8 text-center neon-gradient">
+            Reserve your date and Get a Quote
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -170,7 +172,7 @@ export const QuoteForm = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-gold text-charcoal py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+              className="w-full bg-gradient-to-r from-neonPink to-neonBlue text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               Submit Request
             </motion.button>

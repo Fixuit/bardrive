@@ -24,7 +24,7 @@ export const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-shadow">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-neon-pulse">
             Elevate Your Events
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-shadow">
@@ -34,7 +34,7 @@ export const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToQuoteForm}
-            className="bg-gold text-charcoal px-8 py-3 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-colors"
+            className="bg-gradient-to-r from-neonPink to-neonBlue text-white px-8 py-3 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity"
           >
             Book Now
           </motion.button>

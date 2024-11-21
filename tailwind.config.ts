@@ -52,9 +52,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        neonPink: "#FF1E8A",
+        neonBlue: "#00E5FF",
+        neonPurple: "#8B5CF6",
+        darkChar: "#121212",
         charcoal: "#1A1F2C",
-        gold: "#C6A87C",
-        copper: "#B87333",
         cream: "#F5F5F5",
       },
       borderRadius: {
@@ -79,12 +81,21 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "neon-pulse": {
+          "0%, 100%": {
+            textShadow: "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #FF1E8A, 0 0 82px #FF1E8A, 0 0 92px #FF1E8A",
+          },
+          "50%": {
+            textShadow: "0 0 4px #fff, 0 0 7px #fff, 0 0 18px #fff, 0 0 38px #00E5FF, 0 0 73px #00E5FF, 0 0 80px #00E5FF",
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
+        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
       },
     },
   },
