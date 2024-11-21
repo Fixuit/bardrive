@@ -7,10 +7,22 @@ export const QuoteForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     date: "",
     guests: "",
+    eventType: "",
+    duration: "",
     details: "",
   });
+
+  const eventTypes = [
+    "Birthday Party",
+    "Cocktail Party",
+    "Wedding",
+    "Corporate Event",
+    "Theme Party",
+    "Just Because",
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,8 +33,11 @@ export const QuoteForm = () => {
     setFormData({
       name: "",
       email: "",
+      phone: "",
       date: "",
       guests: "",
+      eventType: "",
+      duration: "",
       details: "",
     });
   };
@@ -36,7 +51,7 @@ export const QuoteForm = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-4xl font-bold mb-8 text-center">Request a Quote</h2>
+          <h2 className="text-4xl font-bold mb-8 text-center">Reserve your date and Get a Quote</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -66,6 +81,18 @@ export const QuoteForm = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
+                <label className="block text-sm font-medium mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium mb-2">Event Date</label>
                 <input
                   type="date"
@@ -77,10 +104,43 @@ export const QuoteForm = () => {
                   className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
                 />
               </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  Number of Guests
-                </label>
+                <label className="block text-sm font-medium mb-2">Type of Event</label>
+                <select
+                  required
+                  value={formData.eventType}
+                  onChange={(e) =>
+                    setFormData({ ...formData, eventType: e.target.value })
+                  }
+                  className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
+                >
+                  <option value="">Select Event Type</option>
+                  {eventTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Duration (hours)</label>
+                <input
+                  type="number"
+                  required
+                  min="2"
+                  value={formData.duration}
+                  onChange={(e) =>
+                    setFormData({ ...formData, duration: e.target.value })
+                  }
+                  className="w-full px-4 py-2 rounded-lg bg-charcoal border border-gold focus:outline-none focus:ring-2 focus:ring-gold"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-2">Number of Guests</label>
                 <input
                   type="number"
                   required
@@ -94,7 +154,7 @@ export const QuoteForm = () => {
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">
-                Event Details
+                Tell us about your Event
               </label>
               <textarea
                 required
