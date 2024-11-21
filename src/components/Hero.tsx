@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 
 export const Hero = () => {
+  const scrollToQuoteForm = () => {
+    const quoteForm = document.querySelector('#quote-form');
+    quoteForm?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -28,6 +33,7 @@ export const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={scrollToQuoteForm}
             className="bg-gold text-charcoal px-8 py-3 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-colors"
           >
             Book Now
