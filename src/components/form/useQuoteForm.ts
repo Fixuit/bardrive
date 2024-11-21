@@ -36,17 +36,21 @@ export const useQuoteForm = () => {
     }).base("app0iL7tPqio3InM8");
     
     try {
-      await base('Quote Requests').create({
-        Name: formData.name,
-        Email: formData.email,
-        Phone: formData.phone,
-        "Event Date": formData.date,
-        "Number of Guests": parseInt(formData.guests),
-        "Event Type": formData.eventType,
-        "Duration (hours)": parseInt(formData.duration),
-        "Event Details": formData.details,
-        "Submission Date": new Date().toISOString()
-      });
+      await base('Quote Requests').create([
+        {
+          fields: {
+            Name: formData.name,
+            Email: formData.email,
+            Phone: formData.phone,
+            "Event Date": formData.date,
+            "Number of Guests": parseInt(formData.guests),
+            "Event Type": formData.eventType,
+            "Duration (hours)": parseInt(formData.duration),
+            "Event Details": formData.details,
+            "Submission Date": new Date().toISOString()
+          }
+        }
+      ]);
 
       toast({
         title: "Quote Request Received",
